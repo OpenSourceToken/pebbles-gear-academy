@@ -9,3 +9,4 @@ gstd = { git = "https://github.com/gear-tech/gear.git", tag = "v1.4.1" }
 gmeta = { git = "https://github.com/gear-tech/gear.git", tag = "v1.4.1" }
 parity-scale-codec = { version = "3", default-features = false }
 scale-info = { version = "2", default-features = false }
+enum-iterator = "2.1.0"

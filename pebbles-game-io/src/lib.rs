@@ -3,7 +3,7 @@
 use gmeta::{In, InOut, Metadata, Out};
 use gstd::prelude::*;
 
-// the metadata to be used by the [IDEA](https://idea.gear-tech.io/programs?node=wss%3A%2F%2Ftestnet.vara.network) portal.
+// 定义基础 PebblesMetadata 结构
 pub struct PebblesMetadata;
 
 impl Metadata for PebblesMetadata {
@@ -15,8 +15,7 @@ impl Metadata for PebblesMetadata {
     type Signal = ();
 }
 
-// When initialising the game, it is necessary to pass some initial information.
-// For example, the number of pebbles (N), maximum pebbles to be removed per turn (K), difficulty level.
+// 定义游戏初始化参数
 #[derive(Debug, Default, Clone, Encode, Decode, TypeInfo)]
 pub struct PebblesInit {
     pub difficulty: DifficultyLevel,
@@ -24,6 +23,7 @@ pub struct PebblesInit {
     pub max_pebbles_per_turn: u32,
 }
 
+// 定义游戏难度等级
 #[derive(Debug, Default, Clone, Encode, Decode, TypeInfo, PartialEq, Eq)]
 pub enum DifficultyLevel {
     #[default]
@@ -31,9 +31,7 @@ pub enum DifficultyLevel {
     Hard,
 }
 
-// It needs to send actions message for every User's move and receive some event from the program.
-// The action can be a turn with some count of pebbles to be removed or the give up.
-// Also, there is a restart action than resets the game state .
+// 定义游戏执行动作
 #[derive(Debug, Clone, Encode, Decode, TypeInfo)]
 pub enum PebblesAction {
     Turn(u32),
@@ -45,24 +43,26 @@ pub enum PebblesAction {
     },
 }
 
-// And the event reflects the game state after the User's move:
-// either pebbles count removed by the Program or the end of game with the information about the winner.
+// 定义游戏返回事件
 #[derive(Debug, Clone, Encode, Decode, TypeInfo, PartialEq, Eq)]
+#[codec(crate = gstd::codec)]
+#[scale_info(crate = gstd::scale_info)]
 pub enum PebblesEvent {
     CounterTurn(u32),
     Won(Player),
 }
 
+// 定义玩家类型
 #[derive(Debug, Default, Clone, Encode, Decode, TypeInfo, PartialEq, Eq)]
+#[codec(crate = gstd::codec)]
+#[scale_info(crate = gstd::scale_info)]
 pub enum Player {
     #[default]
     User,
     Program,
 }
 
-// Internal game state should keep all information related to the current state of the game.
-// Some information is set during initialization, the first player is chosen randomly,
-// some data are change during the game.
+// 定义游戏状态
 #[derive(Debug, Default, Clone, Encode, Decode, TypeInfo)]
 pub struct GameState {
     pub pebbles_count: u32,

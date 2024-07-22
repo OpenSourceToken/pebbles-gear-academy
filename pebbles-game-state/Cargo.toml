@@ -1,0 +1,13 @@
+[package]
+name = "pebbles-game-state"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+gstd = { git = "https://github.com/gear-tech/gear.git", tag = "v1.4.1", features = ["debug"] }
+gmeta = { git = "https://github.com/gear-tech/gear.git", tag = "v1.4.1", features = ["codegen"] }
+pebbles-game-io.path = "../pebbles-game-io"
+
+[build-dependencies]
+gear-wasm-builder = { git = "https://github.com/gear-tech/gear.git", tag = "v1.4.1" }
+pebbles-game-io.path = "../pebbles-game-io"

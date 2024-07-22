@@ -16,17 +16,26 @@
 
 目录结构应如下所示：
 
+
 ```md
 pebbles-game
-├── io
-│ ├── src
-│ │ └── lib.rs
-│ └── Cargo.toml
-├── src
-│ └── lib.rs
-├── tests
-│ └── basic.rs
-├── Cargo.lock
-├── Cargo.toml
-└── build.rs
+    ├── io
+    │   ├── src
+    │   │   └── lib.rs
+    │   └── Cargo.toml
+    ├── src
+    │   └── lib.rs
+    ├── tests
+    │   └── basic.rs
+    ├── Cargo.lock
+    ├── Cargo.toml
+    └── build.rs
 ```
+
+# 类型定义
+
+`pebbles-game-io` 将包含输入、输出和内部状态数据的类型定义。
+
+https://idea.gear-tech.io/code/0xed806b43fe1ed55b4db4fd3cf1eacdae8ca7139497868aaaf906fd0d8f5953f1?node=wss%3A%2F%2Ftestnet.vara.network
+
+![Alt text](1721633077635.jpg)
